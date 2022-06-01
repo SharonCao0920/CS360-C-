@@ -48,7 +48,7 @@ void Complex::print() {
             cout << "The complex number is: "<< real << " + " << img << "i" <<
    endl;
 }
-Complex add(complex c1, complex c2) {
+Complex add(Complex c1, Complex c2) {
    Complex res;
    res.real = c1.real + c2.real;//addition for real part
    res.img = c1.img + c2.img;//addition for imaginary part
