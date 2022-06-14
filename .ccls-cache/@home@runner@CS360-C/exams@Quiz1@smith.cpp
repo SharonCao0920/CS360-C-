@@ -70,11 +70,13 @@ i.Public method: void help(const  Smith& uncle_smith) to print uncle_smith.name,
 class Son_friend_Smith : public Friend_Smith{
 public:
   void help(const  Smith& uncle_smith){
+    cout << "In Son_friend_Smith: " << endl;
     cout << "Name is: " << uncle_smith.name << endl;
     cout << "Home is: " << uncle_smith.getMHome() << endl;
     cout << "Wife is: " << uncle_smith.getMWife() << endl;
-    help(uncle_smith);
+    Friend_Smith::help(uncle_smith);
   }
+  
 };
 
 /*
