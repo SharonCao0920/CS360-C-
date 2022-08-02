@@ -1,174 +1,52 @@
-// Complex.cpp : Defines the entry point for the console application.
-//
+#include "Complex.h"
 
-#include "complex.h"
+#include<iostream>
+using std::ostream;
+using std::istream;
 
-#include <iostream>
 
-using namespace std;
+Complex::Complex ( double realPart, double imaginaryPart): real (realPart), imaginary(imaginaryPart){}
 
-// Constructor
-
-Complex::Complex(double realPart, double imaginaryPart): real(realPart), imaginary(imaginaryPart)  {}
-
-// Addition (+) operator
-
-Complex Complex::operator+(const Complex &operd2) const{
-   return Complex(real + operd2.real,imaginary + operd2.imaginary);
+Complex Complex::operator+( const Complex &operand2) const{
+  return Complex (real + operand2.real, imaginary + operand2.imaginary);
 }
 
-// Subtraction (-) operator
-
-Complex Complex::operator-(const Complex &operd2) const
-
-{
-
-   return Complex(real - operd2.real,
-
-       imaginary - operd2.imaginary);
-
+Complex Complex::operator-( const Complex &operand2) const{
+  return Complex (real - operand2.real, imaginary - operand2.imaginary);
 }
 
-// Multiplication (*) operator
-
-Complex Complex::operator*(const Complex &operd2) const
-
-{
-
-   return Complex(
-
-       (real * operd2.real) - (imaginary * operd2.imaginary),
-
-       (real * operd2.imaginary) + (imaginary * operd2.real));
-
+Complex Complex::operator*( const Complex &operand2) const{
+  return Complex (( real * operand2.real ) + ( imaginary * operand2.imaginary ),( real * operand2.imaginary ) + ( imaginary * operand2.real ));
 }
 
-Complex Complex::operator/(const Complex &operd2) const
-
-{
-
-   return Complex(
-
-       (((real * operd2.real) + (imaginary * operd2.imaginary))/((operd2.real*operd2.real) + (operd2.imaginary*operd2.imaginary))),
-
-       ((-(real * operd2.imaginary) + (imaginary * operd2.real))/((operd2.real*operd2.real)+(operd2.imaginary*operd2.imaginary))));
-
+Complex& Complex::operator=( const Complex &right){
+  real = rigiht.real;
+  imaginary = right.imaginary;
+  return *this;
 }
 
-// Overloaded = operator
-
-Complex& Complex::operator=(const Complex &right)
-
-{
-
-   real = right.real;
-
-   imaginary = right.imaginary;
-
-   return *this; // enables concatenation
-
-} // end function operator=
-
-bool Complex::operator==(const Complex &right) const
-
-{
-
-   return (right.real == real) && (right.imaginary == imaginary)
-
-       ? true : false;
-
+bool Complex::operator==( const Complex &right ) const{ 
+  return (right.real == real) && (right.imaginary == imaginary)? true : false;
 }
 
-bool Complex::operator!=(const Complex &right) const
-
-{
-
-   return !(*this == right);
-
-} // end function operator!=
-
-ostream& operator<<(ostream &output, const Complex &complex)
-
-{
-
-   output << "(" << complex.real << ", " << complex.imaginary << ")";
-
-   return output;
-
+bool Complex::operator!=( const Complex &right ) const{
+  return !( *this == right ); 
 }
 
-istream& operator >> (istream &input, Complex &complex)
-
-{
-
-   input.ignore();
-
-   input >> complex.real;
-
-   input.ignore();
-   // not reading the imaginary value here
-   input >> complex.imaginary;
-   input.ignore();
-
-   return input;
-
+ostream& operator<<( ostream &output, const Complex &complex ){
+  output << "(" << complex.real << ", " << complex.imaginary << ")";
+  return output;
 }
 
-// Overloaded = operator
-
-Complex& Complex::operator=(const Complex &right)
-
-{
-
-   real = right.real;
-
-   imaginary = right.imaginary;
-
-   return *this; // enables concatenation
-
-} // end function operator=
-
-bool Complex::operator==(const Complex &right) const
-
-{
-
-   return (right.real == real) && (right.imaginary == imaginary)
-
-       ? true : false;
-
+istream& operator>>( istream &input, Complex &complex ){
+  input.ignore();
+  input >> complex.real;
+  input.ignore( 2 ); 
+  input >> complex.imaginary;
+  input.ignore(); 
+  return input;
 }
 
-bool Complex::operator!=(const Complex &right) const
-
-{
-
-   return !(*this == right);
-
-} // end function operator!=
-
-ostream& operator<<(ostream &output, const Complex &complex)
-
-{
-
-   output << "(" << complex.real << ", " << complex.imaginary << ")";
-
-   return output;
-
-}
-
-istream& operator >> (istream &input, Complex &complex)
-
-{
-
-   input.ignore();
-
-   input >> complex.real;
-
-   input.ignore();
-   // not reading the imaginary value here
-   input >> complex.imaginary;
-   input.ignore();
-
-   return input;
-
+void Complex::print() const{
+  cout << '(' << real << ", " << imaginary << ')';
 }
