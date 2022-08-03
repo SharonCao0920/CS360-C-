@@ -32,16 +32,16 @@ class decVal : public number{
 };
 
 int main(void) {
-    int numVal=10;
-    cout<<"Number: "<<numVal<<"\n";
+    int numVal = 1000;
+    cout << "Number: "<<numVal<<"\n";
 
-    number *h=new hexVal();    //Display Hexadecimal value
+    number *h = new hexVal();    //Display Hexadecimal value
     h->print_it(numVal);
    
-    number *o=new octVal();    //Display Octal value
+    number *o = new octVal();    //Display Octal value
     o->print_it(numVal);
    
-    number *d=new decVal();    //Display Decimal value
+    number *d = new decVal();    //Display Decimal value
     d->print_it(numVal);
 
     return 0;
